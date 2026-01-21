@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"tbo_backend/applications"
+	"tbo_backend/ml_models_integration"
 	"tbo_backend/queries/createtables"
 	"tbo_backend/utils"
 )
@@ -26,6 +27,10 @@ func main() {
 	createtables.CreateUserTable()
 	createtables.CreateFollowTable()
 	createtables.BlockUserTable()
+	createtables.CreateTBOAgentsTable()
+
+	// loading model in memory
+	ml_models_integration.LoadCatboostModels()
 
 	// connect to http host fiber framework
 	applications.ConnectHttp()
